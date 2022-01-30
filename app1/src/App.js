@@ -6,25 +6,29 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 const App = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/app1">App 1</Link>
+          </li>
+          <li>
+            <Link to="/app2">App 2</Link>
+          </li>
+        </ul>
+      </nav>
+      <div
+        style={{
+          margin: "10px",
+          textAlign: "center",
+          backgroundColor: "greenyellow",
+        }}
+      >
         <Routes>
-          <Route path="/about" element={<About />} />
-
-          <Route path="/users" element={<Users />} />
-
+          <Route path="/app1" element={<App1 />} />
+          <Route path="/app2" element={<App2 />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
@@ -34,30 +38,26 @@ const App = () => {
 
 function Home() {
   return (
-    <div>
-      <div
-        style={{
-          margin: "10px",
-          padding: "10px",
-          textAlign: "center",
-          backgroundColor: "greenyellow",
-        }}
-      >
-        <h1>App1</h1>
-      </div>
-      <Suspense fallback={"loading..."}>
-        <RemoteApp />
-      </Suspense>
+    <div style={{ padding: "10px" }}>
+      <h1>This is the homepage</h1>
     </div>
   );
 }
 
-function About() {
-  return <h2>About</h2>;
+function App1() {
+  return (
+    <div style={{ padding: "10px" }}>
+      <h1>App1</h1>
+    </div>
+  );
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function App2() {
+  return (
+    <Suspense fallback={"loading..."}>
+      <RemoteApp />
+    </Suspense>
+  );
 }
 
 export default App;
